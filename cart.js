@@ -1,0 +1,21 @@
+var cartproducts=document.getElementById("cartproducts");
+var products=JSON.parse(localStorage.getItem("cart"))||[];
+products.forEach(element => {
+    var div=document.createElement("div");
+    div.className="cartproduct";
+    var image=document.createElement("img");
+    image.src="../"+element.img;
+    var innerdiv=document.createElement("div");
+    var h2=document.createElement("h2");
+    h2.innerHTML=element.name;
+    var p=document.createElement("p");
+    p.innerHTML=element.description;
+    var p2=document.createElement("p");
+    p2.innerHTML=element.price;
+    innerdiv.appendChild(h2);
+    innerdiv.appendChild(p);
+    innerdiv.appendChild(p2);
+    div.appendChild(image);
+    div.appendChild(innerdiv);
+    cartproducts.appendChild(div);
+});

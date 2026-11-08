@@ -6,9 +6,17 @@ var phones=[
     {name:"xiaomi",description:"",price:"100$",img:"assets/xiaomi\ 17\ ultra.jpg"},
     {name:"huawei",description:"",price:"100$",img:"assets/Huawei-Nova-16s-Pro-5G-Crystel-2.jpg"},
 ]
-console.log("ss");
+var cart=JSON.parse(localStorage.getItem(cart))||[];
+function increase(phone){
+    const num=document.getElementById("num");
+    num.style.display="inline-block";
+    num.innerHTML=parseInt(num.innerHTML)+1;
+    cart.push(phone);
+    localStorage.setItem("cart",JSON.stringify(cart));
+}
 var container=document.getElementById("container");
 phones.forEach(phone => {
+    let currentphone=phone;
     var div=document.createElement("div");
     div.className="phonediv";
     var img=document.createElement("img");
@@ -27,6 +35,10 @@ phones.forEach(phone => {
     price.className="phoneprice";
     price.innerHTML=phone.price;
     div.appendChild(price);
+    var btn=document.createElement("button");
+    btn.addEventListener("click",()=>increase(currentphone));
+    btn.className="addbtn";
+    btn.innerHTML="Add To Cart";
+    div.appendChild(btn);
     container.appendChild(div);
-    console.log(container)
 });
