@@ -6,13 +6,21 @@ var phones=[
     {name:"xiaomi",description:"",price:"100$",img:"assets/xiaomi\ 17\ ultra.jpg"},
     {name:"huawei",description:"",price:"100$",img:"assets/Huawei-Nova-16s-Pro-5G-Crystel-2.jpg"},
 ]
-var cart=JSON.parse(localStorage.getItem(cart))||[];
+var cart=JSON.parse(localStorage.getItem("cart"))||[];
+var num=document.getElementById("num");
+if(cart.length==0){
+        num.style.display="none";
+        console.log("none")
+    }
+    else{
+        num.style.display="inline-block";
+        num.innerHTML=cart.length;
+    }
 function increase(phone){
-    const num=document.getElementById("num");
-    num.style.display="inline-block";
-    num.innerHTML=parseInt(num.innerHTML)+1;
     cart.push(phone);
     localStorage.setItem("cart",JSON.stringify(cart));
+    num.innerHTML=cart.length;
+    num.style.display="inline-block";
 }
 var container=document.getElementById("container");
 phones.forEach(phone => {
